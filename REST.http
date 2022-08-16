@@ -1,0 +1,10 @@
+POST http://localhost:5000/cats 
+
+
+###
+
+GET http://localhost:5000/cats 
+
+
+###
+DELETE http://localhost:5000/cats/1 

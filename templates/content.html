@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<a href="http://localhost:5000/">Back</a>
+<div class='row justify-content-md-center mt-4'>
+    <div class='col'>
+      
+    </div>
+    {% for d in data %}
+  <div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Name:</b> {{d.name}}</li>
+      <li class="list-group-item"><b>ID:</b> {{d.id}}</li>
+      <li class="list-group-item"><b>Visit GitHub:</b> {{d.owner.url}}</li>
+    </ul>
+  </div>
+  {% endfor %}
+</div>
+
+
+<a href="http://localhost:5000/">Back</a>
+<div class='row justify-content-md-center mt-4'>
+  <div class='col text-center'>
+    <h1><b>NOT FOUND</b></h1>
+  </div>
+</div>
+
+{% endblock %}
