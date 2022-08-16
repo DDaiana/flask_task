@@ -6,14 +6,14 @@ savedRepo = [
 
 
 def index(request):
-    return [c for c in savedRepo], 200
+    return [r for r in savedRepo], 200
 
 
 def create(request):
-    new_cat = request.get_json()
-    new_cat['id'] = sorted([c['id'] for c in savedRepo][-1] + 1)
-    savedRepo.append(new_cat)
-    return new_cat, 201
+    new_repo = request.get_json()
+    new_repo['id'] = sorted([s['id'] for s in savedRepo][-1] + 1)
+    savedRepo.append(new_repo)
+    return new_repo, 201
 
 
 def show(request, uid):
@@ -21,9 +21,9 @@ def show(request, uid):
 
 
 def destroy(request, uid):
-    cat = find_by_uid(uid)
-    savedRepo.remove(cat)
-    return cat, 204
+    repo = find_by_uid(uid)
+    savedRepo.remove(repo)
+    return repo, 204
 
 
 def update(request, uid):
@@ -37,6 +37,6 @@ def update(request, uid):
 
 def find_by_uid(uid):
     try:
-        return next(c for c in savedRepo if c['id'] == uid)
+        return next(r for r in savedRepo if r['id'] == uid)
     except:
         raise BadRequest(f'We dont have a cat with {uid}')
