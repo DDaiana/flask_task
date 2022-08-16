@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 
 from flask_cors import CORS
 from controllers import user_repo
-from api import fetch_repos
+from server import fetch_repos
 
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ def Welcome():
 
 
 @app.route('/cats', methods=['GET', 'POST'])
-def cats():
+def repos():
     fns = {
         'GET': user_repo.index,
         'POST': user_repo.create
@@ -32,15 +32,15 @@ def cats():
     return jsonify(resp), code
 
 
-@app.route('/cats/<int:cat_id>', methods=['GET', 'DELETE', 'PUT'])
-def cat_handler(cat_id):
+@app.route('/repos/<int:repo_id>', methods=['GET', 'DELETE', 'PUT'])
+def repo_handler(repo_id):
     fns = {
         'GET': user_repo.show,
         'DELETE': user_repo.destroy,
         'PUT': user_repo.update
     }
 
-    resp, code = fns[request.method](request, cat_id)
+    resp, code = fns[request.method](request, repo_id)
     return jsonify(resp), code
 
 
